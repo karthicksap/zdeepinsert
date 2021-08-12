@@ -1,0 +1,158 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+          	xmlns:f="sap.ui.layout.form"
+            xmlns:l="sap.ui.layout"
+          controllerName="art.bif.oc.controller.View1">
+
+    <Page title="Create Purcahse order">
+
+		<f:SimpleForm id="SimpleFormChange354"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Create PO"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+
+			<Label text="Total Gross Amount">
+			<layoutData>
+				<l:GridData span="XL1 L2 M6 S6"/>
+			</layoutData>
+            </Label>
+			<Text text="{local>/orderCreate/PO_GROSS_AMT}">
+			<layoutData>
+				<l:GridData span="XL3 L2 M6 S6"/>
+			</layoutData>
+            </Text>
+
+			<Label text="Total Tax Amount">
+            <layoutData>
+				<l:GridData span="XL1 L2 M6 S6"/>
+			</layoutData>
+            </Label>
+			<Text text="{local>/orderCreate/PO_TAX_AMT}">
+            			<layoutData>
+				<l:GridData span="XL3 L2 M6 S6"/>
+			</layoutData>
+            </Text>
+			    <Label text="Total Net Amount">
+                			<layoutData>
+				<l:GridData span="XL1 L2 M6 S6"/>
+			</layoutData>
+                </Label>
+				<Text text="{local>/orderCreate/PO_NET_AMT}">
+                			<layoutData>
+				<l:GridData span="XL3 L2 M6 S6"/>
+			</layoutData>
+            </Text>
+				<Label text="Total Quantity">
+			<layoutData>
+				<l:GridData span="XL1 L2 M6 S6"/>
+			</layoutData>
+                </Label>
+				<Text text="{local>/orderCreate/PO_QTY}">
+                			<layoutData>
+				<l:GridData span="XL3 L2 M6 S6"/>
+			</layoutData>
+            </Text>
+				<Label text="Total Products">
+			<layoutData>
+				<l:GridData span="XL1 L2 M6 S6"/>
+			</layoutData>
+                </Label>
+				<Text>
+                			<layoutData>
+				<l:GridData span="XL3 L2 M6 S6"/>
+			</layoutData>
+            </Text>
+				<Label text="Delivery Date">
+			<layoutData>
+				<l:GridData span="XL1 L2 M6 S6"/>
+			</layoutData>
+                </Label>
+				<DatePicker width="200px" id="idDate" change="onChange" value="{local>/orderCreate/ORDER_DATE}">
+			<layoutData>
+				<l:GridData span="XL3 L2 M6 S6"/>
+			</layoutData>
+                </DatePicker>
+			</f:content>
+		</f:SimpleForm>
+
+        <Table items="{local>/orderCreate/NavOrderItems}">
+
+<headerToolbar>
+    <Toolbar >
+        <ToolbarSpacer />
+        <Button icon="sap-icon://add" text="Add" press="onAdd" />
+    </Toolbar>
+</headerToolbar>
+            <columns>
+                <Column >
+                    <Text text="Item No" />
+                </Column>
+                <Column >
+                    <Text text="Product Name" />
+                </Column>
+                <Column >
+                    <Text text="Qty" />
+                </Column>
+                <Column >
+                    <Text text="Gross Amount" />
+                </Column>
+                <Column >
+                    <Text text="Tax Amount" />
+                </Column>
+                <Column >
+                    <Text text="Net Amount" />
+                </Column>
+                <Column >
+                    <Text text="Currency" />
+                </Column>
+            </columns>
+
+            <items>
+                <ColumnListItem >
+                    <cells>
+                        <Text text="{local>PO_ITEM_NO}" />
+                        <Input value="{local>PO_GUID}" showValueHelp="true" valueHelpRequest="onValue" /> 
+                        <Input value="{local>QUANTITY}" liveChange="onValueChange"></Input>
+                        <Text text="{local>GROSS_AMT}" />
+                        <Text text="{local>TAX_AMT}" />
+                        <Text text="{local>NET_AMT}" />
+                        <Text text="{local>CURRENCY_CODE}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+
+        </Table>
+
+    <footer>
+        <Toolbar>
+                <Button
+                    icon="sap-icon://alert"
+                    text="{= ${message>/}.length }"
+                    visible="{= ${message>/}.length > 0 }"
+                    type="Emphasized"
+                    press="onMessagePopoverPress" />
+
+                <ToolbarSpacer />
+
+                <Button text="Save" type="Accept" press="onSave" />
+                <Button text="Cancel" type="Reject"  press="onCancel" />
+
+        </Toolbar>
+    </footer>
+
+    </Page>
+
+</mvc:View>
